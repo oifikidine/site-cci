@@ -4,6 +4,9 @@ const cors = require('cors');
 require ('dotenv').config(); // charge les variables du fichiers .env
 
 
+// On importe la connexion à la base de données
+const sequelize = require('./config/database');
+
 // On crée l'application Express
 const app = express();
 
@@ -17,6 +20,13 @@ app.use(express.json()); // permet de lire du json envoyé par le front
 app.get('/', (req,res) => {
     res.json({ message: 'le serveur CCI fonctionne !'})
 });
+
+
+// On teste la connexion à la base de données 
+sequelize.authenticate()
+.then(() => console.log('Connexion à la Base de données réussie'))
+.catch(() => console.log('Impossible de se connecter à la base de données', err));
+
 
 // On démarre le serveur sur un port
 const PORT = process.env.PORT || 3000;
