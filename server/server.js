@@ -2,6 +2,7 @@
 const express= require('express');
 const cors = require('cors');
 require ('dotenv').config(); // charge les variables du fichiers .env
+const connecterMongoDB = require('./config/mongodb');
 
 
 // On importe la connexion à la base de données
@@ -40,6 +41,9 @@ sequelize.authenticate()
 })
 .then(() => console.log('Tables synchronisées'))
 .catch((err) => console.log('Impossible de se connecter à la base de données', err));
+
+// On connecte aussi MongoDB (pour l'historique des actions admin)
+connecterMongoDB();
 
 
 // On démarre le serveur sur un port
