@@ -21,6 +21,11 @@ app.get('/', (req,res) => {
     res.json({ message: 'le serveur CCI fonctionne !'})
 });
 
+// On branche les routes d'authentification
+const authRoutes = require('./routes/authRoutes');
+
+// On branche les routes : toutes commenceront par /api/auth
+app.use('/api/auth', authRoutes);
 
 // On importe les modèles pour que Sequelize les connaisse
 require('./models/Message');
