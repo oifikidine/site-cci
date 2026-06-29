@@ -22,10 +22,19 @@ app.get('/', (req,res) => {
 });
 
 
+// On importe les modèles pour que Sequelize les connaisse
+require('./models/Message');
+require('./models/Contenu');
+require('./models/Admin');
+
 // On teste la connexion à la base de données 
 sequelize.authenticate()
-.then(() => console.log('Connexion à la Base de données réussie'))
-.catch(() => console.log('Impossible de se connecter à la base de données', err));
+.then(() => {
+    console.log('Connexion à la Base de données réussie');
+    return sequelize.sync();  // crée les tables à partir des modèles 
+})
+.then(() => console.log('Tables synchronisées'))
+.catch((err) => console.log('Impossible de se connecter à la base de données', err));
 
 
 // On démarre le serveur sur un port
