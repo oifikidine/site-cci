@@ -28,6 +28,19 @@ const authRoutes = require('./routes/authRoutes');
 // On branche les routes : toutes commenceront par /api/auth
 app.use('/api/auth', authRoutes);
 
+// On importe les routes de contenu
+const contenuRoutes = require('./routes/contenuRoutes');
+
+// On branche les routes de contenu : toutes commenceront par /api/contenus
+app.use('/api/contenus', contenuRoutes);
+
+const messageRoutes = require('./routes/messageRoutes');
+app.use('/api/messages', messageRoutes);
+
+
+const historiqueRoutes = require('./routes/historiqueRoutes');
+app.use('/api/historique', historiqueRoutes);
+
 // On importe les modèles pour que Sequelize les connaisse
 require('./models/Message');
 require('./models/Contenu');
