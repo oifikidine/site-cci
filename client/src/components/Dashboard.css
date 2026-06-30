@@ -1,0 +1,49 @@
+.dashboard {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  color: #373CF5;
+  font-size: 24px;
+}
+
+.btn-deconnexion {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dashboard-contenus h2 {
+  margin-bottom: 16px;
+  color: #1a1a2e;
+}
+
+.table-contenus {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.table-contenus th,
+.table-contenus td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.table-contenus th {
+  background-color: #f4f4f8;
+  color: #373CF5;
+}
