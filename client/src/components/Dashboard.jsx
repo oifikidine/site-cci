@@ -47,9 +47,24 @@ function Dashboard() {
       setTitre('');
       setExtrait('');
       setContenuTexte('');
-      chargerContenus(); // recharge la liste pour voir le nouveau contenu
+      chargerContenus();
     } catch (err) {
       console.error('Erreur création contenu', err);
+    }
+  };
+
+  // Supprimer un contenu
+  const supprimerContenu = async (id) => {
+    if (!window.confirm('Voulez-vous vraiment supprimer ce contenu ?')) {
+      return;
+    }
+    try {
+      await axios.delete(`http://localhost:3000/api/contenus/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      chargerContenus();
+    } catch (err) {
+      console.error('Erreur suppression', err);
     }
   };
 
@@ -108,6 +123,7 @@ function Dashboard() {
               <th>Titre</th>
               <th>Catégorie</th>
               <th>Date</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -116,6 +132,14 @@ function Dashboard() {
                 <td>{contenu.titre}</td>
                 <td>{contenu.categorie}</td>
                 <td>{new Date(contenu.createdAt).toLocaleDateString()}</td>
+                <td>
+                  <button
+                    onClick={() => supprimerContenu(contenu.id)}
+                    className="btn-supprimer"
+                  >
+                    Supprimer
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

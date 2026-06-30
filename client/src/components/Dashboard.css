@@ -126,3 +126,18 @@
 .table-contenus tbody tr:hover {
   background-color: #f9f9fc;
 }
+
+
+.btn-supprimer {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-supprimer:hover {
+  background-color: #b71c1c;
+}
