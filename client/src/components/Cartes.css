@@ -1,0 +1,49 @@
+/* ===== CARTES ===== */
+.cartes-inner {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.carte-bloc {
+  flex: 1 1 250px;
+}
+
+.carte {
+  height: 250px;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.carte-bloc:nth-child(1) .carte { background-image: url('../assets/entreprise.jpg'); }
+.carte-bloc:nth-child(2) .carte { background-image: url('../assets/formation.jpg'); }
+.carte-bloc:nth-child(3) .carte { background-image: url('../assets/services.jpg'); }
+
+.btn-carte {
+  background-color: #373CF5;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.carte-titre {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+/* ===== TITRES DE SECTION (uniformes) ===== */
+.titre-section {
+  color: #373CF5;
+  margin-bottom: 24px;
+  font-size: 26px;
+}

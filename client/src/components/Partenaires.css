@@ -1,0 +1,36 @@
+/* ===== PARTENAIRES ===== */
+.liste-partenaires {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.partenaire {
+  flex: 1 1 120px;
+  height: 90px;                    /* un peu plus haute pour mieux voir les logos */
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.partenaire img {
+  max-width: 75%;
+  max-height: 60%;                 /* logos homogénéisés, plus de marge */
+  object-fit: contain;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-wrapper .en-construction {
+  flex: 1;
+}
+

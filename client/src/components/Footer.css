@@ -1,0 +1,46 @@
+/* ===== FOOTER ===== */
+.footer {
+  background-color: #141EA5;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-reseaux {
+  display: flex;
+  gap: 12px;
+}
+
+.reseau {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.reseau:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}

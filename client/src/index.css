@@ -1,0 +1,45 @@
+/* ============================================
+   MÉTHODE : repérer un motif visuel → réflexe CSS
+   - 2 blocs opposés .......... justify-content: space-between
+   - tout centré .............. justify-content + align-items: center
+   - empilé centré ............ flex-direction: column + align-items: center
+   - cartes qui wrappent ...... flex-wrap: wrap + flex: 1 1 250px
+   - 2 colonnes égales ........ flex: 1 sur chaque enfant
+   - rangée alignée ........... align-items: center
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #1a1a2e;
+}
+
+/* Conteneur centré partagé : aligne tout le contenu sur les mêmes bords */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Rythme vertical : même espace au-dessus/dessous de chaque section */
+.hero,
+.cartes,
+.actus,
+.contact,
+.partenaires {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+
+
+
+
+
+
+

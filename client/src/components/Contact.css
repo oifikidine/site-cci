@@ -1,0 +1,24 @@
+/* ===== CONTACT ===== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;     /* un peu plus large, respire mieux */
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;     /* même police que le site */
+  font-size: 15px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  font-family: inherit;     /* le texte d'invite garde aussi la bonne police */
+  color: #999;
+}

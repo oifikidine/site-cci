@@ -1,0 +1,32 @@
+/* ===== HERO ===== */
+.hero-inner {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-image {
+  flex: 1;
+  height: 360px;                   /* un peu plus haute, mieux équilibrée */
+  background-image: url('../assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+.hero-texte {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.btn-decouvrir {
+  background-color: #373CF5;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;              /* arrondi uniformisé avec les autres boutons */
+  padding: 12px 24px;
+}

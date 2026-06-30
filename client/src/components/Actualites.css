@@ -1,0 +1,56 @@
+/* ===== ACTUALITÉS ===== */
+.liste-actus {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: stretch;            /* les cartes s'étirent à la même hauteur */
+}
+
+.actu {
+  flex: 1 1 250px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;                   /* carte en colonne pour gérer la hauteur */
+  flex-direction: column;
+}
+
+.actu-categorie {
+  display: block;
+  padding: 10px 16px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.actu:nth-child(1) .actu-categorie { background-color: #373CF5; } /* orange */
+.actu:nth-child(2) .actu-categorie { background-color: #373CF5; } /* bleu foncé */
+.actu:nth-child(3) .actu-categorie { background-color: #373CF5; } /* vert */
+
+.actu-contenu {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;                         /* le contenu remplit la hauteur de la carte */
+}
+
+.actu-titre {
+  font-size: 17px;
+}
+
+.actu-extrait {
+  font-size: 14px;
+  color: #555;
+}
+
+.actu-lien {
+  color: #373CF5;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: auto;                /* pousse "Lire la suite" tout en bas */
+}

@@ -1,0 +1,29 @@
+.en-construction {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.en-construction h1 {
+  color: #373CF5;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.en-construction p {
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.btn-retour {
+  background-color: #373CF5;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+}
