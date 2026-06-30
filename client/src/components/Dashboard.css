@@ -1,19 +1,24 @@
 .dashboard {
-  padding: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #f4f4f8;
+  padding: 40px 24px;
 }
 
 .dashboard-header {
+  max-width: 1000px;
+  margin: 0 auto 32px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  background-color: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .dashboard-header h1 {
   color: #373CF5;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .btn-deconnexion {
@@ -23,27 +28,101 @@
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-deconnexion:hover {
+  background-color: #b71c1c;
+}
+
+/* Formulaire d'ajout */
+.dashboard-form {
+  max-width: 1000px;
+  margin: 0 auto 32px auto;
+  background-color: white;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-form h2 {
+  margin-bottom: 20px;
+  color: #1a1a2e;
+  font-size: 20px;
+}
+
+.form-contenu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-contenu input,
+.form-contenu select,
+.form-contenu textarea {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-contenu input:focus,
+.form-contenu select:focus,
+.form-contenu textarea:focus {
+  border-color: #373CF5;
+}
+
+.form-contenu button {
+  padding: 14px;
+  background-color: #373CF5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.form-contenu button:hover {
+  background-color: #2b30c4;
+}
+
+/* Liste des contenus */
+.dashboard-contenus {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .dashboard-contenus h2 {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   color: #1a1a2e;
+  font-size: 20px;
 }
 
 .table-contenus {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
 }
 
 .table-contenus th,
 .table-contenus td {
   text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 14px 12px;
+  border-bottom: 1px solid #eee;
 }
 
 .table-contenus th {
-  background-color: #f4f4f8;
   color: #373CF5;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.table-contenus tbody tr:hover {
+  background-color: #f9f9fc;
 }
