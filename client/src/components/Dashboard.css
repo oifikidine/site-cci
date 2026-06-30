@@ -141,3 +141,18 @@
 .btn-supprimer:hover {
   background-color: #b71c1c;
 }
+
+.dashboard-messages {
+  max-width: 1000px;
+  margin: 32px auto 0 auto;
+  background-color: white;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-messages h2 {
+  margin-bottom: 20px;
+  color: #1a1a2e;
+  font-size: 20px;
+}

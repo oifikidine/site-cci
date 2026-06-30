@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const [contenus, setContenus] = useState([]);
+  const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
 
   // States du formulaire de création
@@ -16,13 +17,14 @@ function Dashboard() {
   // On récupère le jeton stocké
   const token = localStorage.getItem('token');
 
-  // Au chargement : vérifier qu'on est connecté, puis charger les contenus
+  // Au chargement : vérifier qu'on est connecté, puis charger les données
   useEffect(() => {
     if (!token) {
       navigate('/admin');
       return;
     }
     chargerContenus();
+    chargerMessages();
   }, []);
 
   // Charger les contenus depuis le back
@@ -32,6 +34,18 @@ function Dashboard() {
       setContenus(reponse.data);
     } catch (err) {
       console.error('Erreur chargement contenus', err);
+    }
+  };
+
+  // Charger les messages depuis le back (route protégée → jeton requis)
+  const chargerMessages = async () => {
+    try {
+      const reponse = await axios.get('http://localhost:3000/api/messages', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setMessages(reponse.data);
+    } catch (err) {
+      console.error('Erreur chargement messages', err);
     }
   };
 
@@ -65,6 +79,21 @@ function Dashboard() {
       chargerContenus();
     } catch (err) {
       console.error('Erreur suppression', err);
+    }
+  };
+
+  // Supprimer un message
+  const supprimerMessage = async (id) => {
+    if (!window.confirm('Supprimer ce message ?')) {
+      return;
+    }
+    try {
+      await axios.delete(`http://localhost:3000/api/messages/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      chargerMessages();
+    } catch (err) {
+      console.error('Erreur suppression message', err);
     }
   };
 
@@ -135,6 +164,39 @@ function Dashboard() {
                 <td>
                   <button
                     onClick={() => supprimerContenu(contenu.id)}
+                    className="btn-supprimer"
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="dashboard-messages">
+        <h2>Messages reçus ({messages.length})</h2>
+        <table className="table-contenus">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {messages.map((msg) => (
+              <tr key={msg.id}>
+                <td>{msg.nom}</td>
+                <td>{msg.email}</td>
+                <td>{msg.message}</td>
+                <td>{new Date(msg.createdAt).toLocaleDateString()}</td>
+                <td>
+                  <button
+                    onClick={() => supprimerMessage(msg.id)}
                     className="btn-supprimer"
                   >
                     Supprimer
