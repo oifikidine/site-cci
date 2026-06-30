@@ -1,0 +1,26 @@
+.detail {
+  flex: 1;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.detail-categorie {
+  display: inline-block;
+  background-color: #373CF5;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.detail h1 {
+  color: #1a1a2e;
+  margin-bottom: 20px;
+}
+
+.detail-contenu {
+  color: #444;
+  line-height: 1.7;
+}

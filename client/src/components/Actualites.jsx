@@ -1,6 +1,7 @@
 import './Actualites.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Actualites() {
   // La mémoire : la liste des contenus (vide au départ)
@@ -24,7 +25,7 @@ function Actualites() {
                 <span className="actu-categorie">{contenu.categorie}</span>
                 <h3 className="actu-titre">{contenu.titre}</h3>
                 <p className="actu-extrait">{contenu.extrait}</p>
-                <a href="#" className="actu-lien">Lire la suite</a>
+                <Link to={`/contenu/${contenu.id}`} className="actu-lien">Lire la suite</Link>
               </div>
             </div>
           ))}

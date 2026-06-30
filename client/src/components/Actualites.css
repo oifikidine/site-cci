@@ -26,9 +26,9 @@
   text-transform: uppercase;
 }
 
-.actu:nth-child(1) .actu-categorie { background-color: #373CF5; } /* orange */
-.actu:nth-child(2) .actu-categorie { background-color: #373CF5; } /* bleu foncé */
-.actu:nth-child(3) .actu-categorie { background-color: #373CF5; } /* vert */
+.actu-categorie {
+  background-color: #373CF5;
+}
 
 .actu-contenu {
   padding: 16px;
