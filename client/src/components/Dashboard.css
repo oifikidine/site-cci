@@ -156,3 +156,43 @@
   color: #1a1a2e;
   font-size: 20px;
 }
+
+.form-boutons {
+  display: flex;
+  gap: 12px;
+}
+
+.form-boutons button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.form-boutons button[type="submit"] {
+  background-color: #373CF5;
+  color: white;
+}
+
+.btn-annuler {
+  background-color: #999;
+  color: white;
+}
+
+.btn-modifier {
+  background-color: #f0a500;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 8px;
+}
+
+.btn-modifier:hover {
+  background-color: #d68f00;
+}

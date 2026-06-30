@@ -8,16 +8,17 @@ function Dashboard() {
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
 
-  // States du formulaire de création
+  // States du formulaire
   const [titre, setTitre] = useState('');
   const [categorie, setCategorie] = useState('actualite');
   const [extrait, setExtrait] = useState('');
   const [contenuTexte, setContenuTexte] = useState('');
 
-  // On récupère le jeton stocké
+  // State qui retient si on modifie (l'id du contenu) ou si on crée (null)
+  const [idEnModification, setIdEnModification] = useState(null);
+
   const token = localStorage.getItem('token');
 
-  // Au chargement : vérifier qu'on est connecté, puis charger les données
   useEffect(() => {
     if (!token) {
       navigate('/admin');
@@ -27,7 +28,6 @@ function Dashboard() {
     chargerMessages();
   }, []);
 
-  // Charger les contenus depuis le back
   const chargerContenus = async () => {
     try {
       const reponse = await axios.get('http://localhost:3000/api/contenus');
@@ -37,7 +37,6 @@ function Dashboard() {
     }
   };
 
-  // Charger les messages depuis le back (route protégée → jeton requis)
   const chargerMessages = async () => {
     try {
       const reponse = await axios.get('http://localhost:3000/api/messages', {
@@ -49,25 +48,52 @@ function Dashboard() {
     }
   };
 
-  // Créer un nouveau contenu
-  const creerContenu = async (e) => {
+  // Vider le formulaire
+  const viderFormulaire = () => {
+    setTitre('');
+    setCategorie('actualite');
+    setExtrait('');
+    setContenuTexte('');
+    setIdEnModification(null);
+  };
+
+  // Soumettre le formulaire : crée OU modifie selon le contexte
+  const soumettreFormulaire = async (e) => {
     e.preventDefault();
+    const donnees = { titre, categorie, extrait, contenu: contenuTexte };
     try {
-      await axios.post(
-        'http://localhost:3000/api/contenus',
-        { titre, categorie, extrait, contenu: contenuTexte },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setTitre('');
-      setExtrait('');
-      setContenuTexte('');
+      if (idEnModification) {
+        // MODIFICATION : on envoie un PUT
+        await axios.put(
+          `http://localhost:3000/api/contenus/${idEnModification}`,
+          donnees,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } else {
+        // CRÉATION : on envoie un POST
+        await axios.post(
+          'http://localhost:3000/api/contenus',
+          donnees,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      }
+      viderFormulaire();
       chargerContenus();
     } catch (err) {
-      console.error('Erreur création contenu', err);
+      console.error('Erreur enregistrement contenu', err);
     }
   };
 
-  // Supprimer un contenu
+  // Préparer la modification : remplir le formulaire avec le contenu choisi
+  const preparerModification = (contenu) => {
+    setTitre(contenu.titre);
+    setCategorie(contenu.categorie);
+    setExtrait(contenu.extrait);
+    setContenuTexte(contenu.contenu);
+    setIdEnModification(contenu.id);
+    window.scrollTo(0, 0); // remonter en haut vers le formulaire
+  };
+
   const supprimerContenu = async (id) => {
     if (!window.confirm('Voulez-vous vraiment supprimer ce contenu ?')) {
       return;
@@ -82,7 +108,6 @@ function Dashboard() {
     }
   };
 
-  // Supprimer un message
   const supprimerMessage = async (id) => {
     if (!window.confirm('Supprimer ce message ?')) {
       return;
@@ -97,7 +122,6 @@ function Dashboard() {
     }
   };
 
-  // Se déconnecter
   const seDeconnecter = () => {
     localStorage.removeItem('token');
     navigate('/admin');
@@ -111,8 +135,8 @@ function Dashboard() {
       </header>
 
       <section className="dashboard-form">
-        <h2>Ajouter un contenu</h2>
-        <form onSubmit={creerContenu} className="form-contenu">
+        <h2>{idEnModification ? 'Modifier le contenu' : 'Ajouter un contenu'}</h2>
+        <form onSubmit={soumettreFormulaire} className="form-contenu">
           <input
             type="text"
             placeholder="Titre"
@@ -140,7 +164,16 @@ function Dashboard() {
             onChange={(e) => setContenuTexte(e.target.value)}
             required
           ></textarea>
-          <button type="submit">Créer le contenu</button>
+          <div className="form-boutons">
+            <button type="submit">
+              {idEnModification ? 'Enregistrer les modifications' : 'Créer le contenu'}
+            </button>
+            {idEnModification && (
+              <button type="button" onClick={viderFormulaire} className="btn-annuler">
+                Annuler
+              </button>
+            )}
+          </div>
         </form>
       </section>
 
@@ -162,6 +195,12 @@ function Dashboard() {
                 <td>{contenu.categorie}</td>
                 <td>{new Date(contenu.createdAt).toLocaleDateString()}</td>
                 <td>
+                  <button
+                    onClick={() => preparerModification(contenu)}
+                    className="btn-modifier"
+                  >
+                    Modifier
+                  </button>
                   <button
                     onClick={() => supprimerContenu(contenu.id)}
                     className="btn-supprimer"
